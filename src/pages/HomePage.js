@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import Spinner from "../components/Spinner";
 
 const HomePage = () => {
   const [recipes, setRecipes] = useState([]);
@@ -15,7 +16,7 @@ const HomePage = () => {
         "https://api.spoonacular.com/recipes/complexSearch",
         {
           params: {
-            apiKey: "898b505db996411c8ea542462552fed4",
+            apiKey: "37df2ec04b21432bacdab4414445f288",
             number: 15,
             query,
           },
@@ -48,7 +49,7 @@ const HomePage = () => {
         <h1 className="text-4xl font-bold mb-6 text-center text-gray-800">
           Recipe Book
         </h1>
-        {/* Search Bar */}
+       
         <div className="mb-8 w-2/5 flex items-center justify-center mx-auto">
           <input
             type="text"
@@ -58,9 +59,7 @@ const HomePage = () => {
             className="w-full border-2 border-gray-400 rounded-lg px-4 py-2 text-lg shadow focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
         </div>
-        {/* Loading Spinner */}
-        {loading && <div className="text-center text-lg">Loading...</div>}
-        {/* Recipes Grid */}
+        {loading && <div className="mx-auto felx items-center justify-center"><Spinner/></div>}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
           {recipes.map((recipe) => (
             <Link key={recipe.id} to={`/recipe/${recipe.id}`}>

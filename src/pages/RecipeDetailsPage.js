@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import axios from "axios";
+import Spinner from "../components/Spinner";
 
 const RecipeDetailsPage = () => {
   const { id } = useParams();
@@ -14,7 +15,7 @@ const RecipeDetailsPage = () => {
           `https://api.spoonacular.com/recipes/${id}/information`,
           {
             params: {
-              apiKey: "898b505db996411c8ea542462552fed4",
+              apiKey: "37df2ec04b21432bacdab4414445f288",
             },
           }
         );
@@ -33,7 +34,7 @@ const RecipeDetailsPage = () => {
   }
 
   if (!recipe) {
-    return <div className="text-center">Loading...</div>;
+    return <Spinner/>;
   }
 
   return (
